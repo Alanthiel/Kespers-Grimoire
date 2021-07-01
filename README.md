@@ -17,6 +17,7 @@ A Dungeons Masters Asset Management Assistant
 * Campaign Archive/Backup Manager - _Opt - Autosave_
 * Schema Export System
 * Asset Reservation System [Auto Reservation] - For example characters reserved as BBEG  
+* Player Notes for each page
 
 
 * Tabs:
@@ -40,6 +41,7 @@ A Dungeons Masters Asset Management Assistant
       
     * Custom Notes
 * Asset Linkers
+* Player History/Timeline
 * _Opt - Asset Tree Builder_
     * _Color Borders based on type_
     * _tag icons_
