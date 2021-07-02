@@ -1,6 +1,4 @@
-# Todo: Implement Asset Skeletal Structure:
-#       Asset Needed: Maps, Events, DM Ideas, Characters, Notes, Images Repository
-# Todo: Implement as Data Class
+# Todo: Implement Asset Management Systems
 # Note: Asset
 
 from dataclasses import dataclass
