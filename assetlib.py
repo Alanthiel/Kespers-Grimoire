@@ -4,56 +4,56 @@
 # Note: Asset
 
 from dataclasses import dataclass
-from dataclasses import asdict
+from dataclasses import asdict # noqa
 import appdirs
 
 
 @dataclass
 class Config:
-    config_loc = (appdirs.user_config_dir() + "/kespersgrimoire")  # noqa
+    config_loc = appdirs.user_config_dir(appname='kespersgrimoire')  # noqa
     tag_type: str
 
 
 @dataclass
-class AssetType:
-    typecount = 0
-    definition: str
+class AssetBase:
+    tags: list
+    asset_id: str
+    asset_count: int = 0
+    notes: list = None
 
-    def __init__(self, definition):
-        self.id = AssetType.typecount + 1
-        self.definition = definition
-        AssetType.typecount += 1
+    def __init__(self, tags=None, notes=None):
+        self.notes = notes
+        self.tags = tags
 
 
 @dataclass
-class Asset:
-    maxid = 0
-    tags: list
-    id: int
-    type: AssetType
+class Map(AssetBase):
+    location: str = None
+    point_of_interest: list = None
+    map_features: list = None
 
-    def __init__(self, tags, type):
-        self.tags = tags
-        self.type = type
-        self.id = Asset.maxid + 1
-        Asset.maxid += 1
+    def __init__(self, tags=None, notes=None, location=None, points_of_interest=None, map_features=None):
+        super().__init__(tags, notes)
+        self.location = location
+        self.point_of_interest = points_of_interest
+        self.map_features = map_features
+        self.asset_id = '{}_map'.format(AssetBase.asset_count + 1)
+        AssetBase.asset_count += 1
 
 
-# Predefined Asset Types
-@dataclass(frozen=True)
-class PredefinedAssets:
-    Maps = AssetType(definition='Predefined')
-    Dm_ideas = AssetType(definition='Predefined')
-    Characters = AssetType(definition='Predefined')
-    Events = AssetType(definition='Predefined')
-    Plots = AssetType(definition='Predefined')
-    Notes = AssetType(definition='Predefined')
+@dataclass
+class Character(AssetBase):
+
+    def __init__(self, tags=None, notes=None):
+        super().__init__(tags, notes)
+        self.asset_id = '{}_cha'.format(AssetBase.asset_count + 1)
+        AssetBase.asset_count += 1
 
 
 def main():
     # testing profile:
-    Config.config_loc = "./local/"
-    snapshot = asdict(Config('FileBased'))
+    # Config.config_loc = "./local/"
+    print(Config.config_loc)
     pass
 
 
