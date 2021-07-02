@@ -50,4 +50,4 @@ A Dungeons Masters Asset Management Assistant
 ## Later Stage Ideas
 
 * Graphical Story Line Builder
-   
+* Plugin Manager
