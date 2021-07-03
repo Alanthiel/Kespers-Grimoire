@@ -1,14 +1,13 @@
 # Todo: Implement Asset Management Systems
-# Note: Asset
+# Todo: Separate Config Script
 
 from dataclasses import dataclass
-from dataclasses import asdict # noqa
-import appdirs
 
 
 @dataclass
 class Config:
-    config_loc = appdirs.user_config_dir(appname='kespersgrimoire')  # noqa
+    app_dir = "./local"
+    config_loc = "{}/config.json".format(app_dir)
     tag_type: str
 
 
@@ -18,6 +17,7 @@ class AssetBase:
     asset_id: str
     asset_count: int = 0
     notes: list = None
+    definition = 'Undeclared'
 
     def __init__(self, tags=None, notes=None):
         self.notes = notes
@@ -29,6 +29,8 @@ class Map(AssetBase):
     location: str = None
     point_of_interest: list = None
     map_features: list = None
+    asset_type = "Map"
+    definition = 'Predefined'
 
     def __init__(self, tags=None, notes=None, location=None, points_of_interest=None, map_features=None):
         super().__init__(tags, notes)
@@ -41,6 +43,8 @@ class Map(AssetBase):
 
 @dataclass
 class Character(AssetBase):
+    asset_type = "Character"
+    definition = 'Predefined'
 
     def __init__(self, tags=None, notes=None):
         super().__init__(tags, notes)
@@ -48,10 +52,10 @@ class Character(AssetBase):
         AssetBase.asset_count += 1
 
 
+# Asset Management System
+
+
 def main():
-    # testing profile:
-    # Config.config_loc = "./local/"
-    print(Config.config_loc)
     pass
 
 
