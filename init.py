@@ -15,13 +15,11 @@ def make_asset_dir():
 
 def make_config():
     with open(Config.config_loc, 'w') as config:
-        config.write('''{
-                "Version":"0.0.1b"
-            }''')
+        config.write('''{\n\t"Version":"0.0.1b"\n}''')
 
 
 def main():
-    make_asset_dir()
+    make_config()
 
 
 if __name__ == '__main__':
